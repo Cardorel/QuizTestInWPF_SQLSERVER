@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KoursovaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="memberId" />
+    </Key>
+    <Property Name="memberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="member" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="questionId" />
+    </Key>
+    <Property Name="questionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subjectId" Type="int" />
+    <Property Name="question" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="picture" Type="varbinary(max)" />
+    <Property Name="firstAnswer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="secondAnswer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="thirdAnswer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fourthAnswer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="correctAnswer" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="registrationId" />
+    </Key>
+    <Property Name="registrationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="memberId" Type="int" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="passwordReg" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="subjectId" />
+    </Key>
+    <Property Name="subjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserAnswers">
+    <Key>
+      <PropertyRef Name="userAnswerId" />
+    </Key>
+    <Property Name="userAnswerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar(max)" />
+    <Property Name="email" Type="nvarchar(max)" />
+    <Property Name="subject" Type="nvarchar(max)" />
+    <Property Name="answer1" Type="nvarchar(max)" />
+    <Property Name="answer2" Type="nvarchar(max)" />
+    <Property Name="answer3" Type="nvarchar(max)" />
+    <Property Name="answer4" Type="nvarchar(max)" />
+    <Property Name="answer5" Type="nvarchar(max)" />
+    <Property Name="answer6" Type="nvarchar(max)" />
+    <Property Name="answer7" Type="nvarchar(max)" />
+    <Property Name="answer8" Type="nvarchar(max)" />
+    <Property Name="answer9" Type="nvarchar(max)" />
+    <Property Name="answer10" Type="nvarchar(max)" />
+    <Property Name="totalScore" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Questions__subje__38996AB5">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subjectId" />
+      </Principal>
+      <Dependent Role="Questions">
+        <PropertyRef Name="subjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__membe__2A4B4B5E">
+    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="memberId" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="UserAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="memberId" Type="int" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="passwordReg" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="KoursovaModelStoreContainer">
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAnswers" EntityType="Self.UserAnswers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Questions__subje__38996AB5" Association="Self.FK__Questions__subje__38996AB5">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Questions" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__membe__2A4B4B5E" Association="Self.FK__Registrat__membe__2A4B4B5E">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Registration" EntitySet="Registration" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

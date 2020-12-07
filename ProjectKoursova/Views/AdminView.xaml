@@ -1,0 +1,268 @@
+﻿<Window x:Class="ProjectKoursova.Views.AdminView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectKoursova.Views"
+        xmlns:vm="clr-namespace:ProjectKoursova.ViewModels" 
+        xmlns:he="clr-namespace:ProjectKoursova.Helpers"
+        mc:Ignorable="d"
+        Title="AdminView" Height="Auto" Width="Auto">
+    <Window.Resources>
+        <he:ContentTemplateSelector x:Key="selector" />
+        <vm:ConverterByteArrays x:Key="ArrayToBitmap"/>
+        <DataTemplate DataType="{x:Type vm:StudentViewModel}" x:Key="StudentViewModel">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Width="250" HorizontalAlignment="Left" Margin="10 50 25 0">
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="200" DecodePixelHeight="200"  UriSource="/Resources/pexels-markus-spiske-330771.jpg" />
+                    </Image.Source>
+                </Image>
+                <StackPanel Grid.Row="0" Grid.Column="1" Width="250" HorizontalAlignment="Center" Margin="190 50 0 0">
+                    <TextBlock TextWrapping="Wrap">
+                <Run FontSize="20" FontWeight="Bold">
+                    Lorem Ipsum 
+                </Run>
+                <Run>
+                    is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                    Aldus PageMaker including versions of Lorem Ipsum.
+                </Run>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" Width="350" Margin="0 50 25 0">
+                    <TextBlock TextWrapping="Wrap">
+                <Run>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit nunc eros, vel dapibus massa rhoncus non. Quisque eu magna mauris. Curabitur mattis, nulla nec scelerisque dictum, neque dui sagittis eros, vel pellentesque ex enim ac odio. Praesent vitae malesuada lacus, eget facilisis diam. Ut rhoncus nunc ut velit iaculis, non ultrices mauris volutpat. Phasellus sed imperdiet diam. Cras euismod tellus augue, ut tempor purus ultricies eu. Cras nunc ex, viverra in feugiat ac, pretium eget mauris. Donec sodales mollis dolor, vitae posuere ante placerat eget. Vivamus ultricies felis turpis, vel mattis mauris vehicula facilisis. Duis convallis nisi et quam lobortis, ac aliquam est luctus. Sed enim dui, ultricies ac viverra nec, tempus vel enim. Aenean volutpat lacus eu posuere ultrices. Quisque sit amet nisi ut libero malesuada tincidunt vel a nisl. 
+                </Run>
+                    </TextBlock>
+                </StackPanel>
+         <TextBlock TextWrapping="Wrap" Margin="10 25" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+            <Run>
+                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus at iaculis nisi. Nullam bibendum, nisl a rhoncus euismod, leo justo interdum urna, at facilisis lacus purus vel libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean sollicitudin feugiat ullamcorper. Nulla pretium fringilla nisl non venenatis. In hac habitasse platea dictumst. In interdum at ligula nec porttitor. Morbi sit amet convallis turpis. Sed in felis egestas, maximus ante auctor, porta est. Nullam ut augue nec lorem ultrices efficitur. In placerat nisl nibh, at tristique tortor accumsan quis.
+            </Run>
+            <LineBreak/>
+            <Run>              
+                Fusce egestas neque a turpis efficitur, non varius nulla fringilla. Sed et lectus eu risus venenatis euismod. Nulla sit amet enim eu nibh malesuada efficitur. Mauris ultricies dignissim ligula eget gravida. Mauris ac eros felis. Curabitur varius, nisi non viverra finibus, lacus lectus congue augue, egestas aliquet tortor odio eget nisi. Praesent maximus est lacus, a pharetra elit auctor quis. Etiam eu facilisis mi. 
+            </Run>
+         </TextBlock>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AdminAddQuestionViewModel}" x:Key="AdminAddQuestionViewModel">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Margin="35" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+                    <TextBox Width="250" Text="{Binding Filter , UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel Margin="10" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="3">
+                    <TextBlock Text="ADD - EDIT - SAVE - DELETE QUESTION" Foreground="DarkOliveGreen" FontSize="25" FontWeight="ExtraBold"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Margin="20 0">
+                    <TextBlock Text="Question" Margin="0 10"/>
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="240" Text="{Binding Question}"/>
+                    <TextBlock Text="Please choose a subject" Margin="0 10"/>
+                    <ComboBox Width="240" ItemsSource="{Binding Subjects , UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="subject1" SelectedValuePath="subjectId" SelectedValue="{Binding SubjectId}" IsSynchronizedWithCurrentItem="True"/>
+                    <TextBlock Text="Please choose an image" Margin="0 10"/>
+                    <Button Height="30" Content="{Binding Filename}" Width="240" Command="{Binding UploadImage}"/>
+                    <TextBlock Text="First answer proposition" Margin="0 10"/>
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="240" Text="{Binding FirstAnswer , UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Second answer proposition" Margin="0 10"/>
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="240" Text="{Binding SecondAnswer , UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Third answer proposition" Margin="0 10"/>
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="240" Text="{Binding ThirdAnswer , UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Fourth answer proposition" Margin="0 10"/>
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="240" Text="{Binding FourthAnswer , UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Correct answer proposition(Choose one of them)" Margin="0 10"/>
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="240" Text="{Binding CorrectAnswer , UpdateSourceTrigger=PropertyChanged}" />
+                    <Button Content="Add" Width="150" Margin="0 20" Padding="12" Cursor="Hand" HorizontalContentAlignment="Center" Command="{Binding AddCommand}"/>
+                </StackPanel>
+                <DataGrid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Questions , UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="Teacher" Binding="{Binding question1}"/>
+                        <DataGridTextColumn Width="*" Header="Subject id" Binding="{Binding subjectId}"/>
+                        <DataGridTextColumn Width="*" Header="Question" Binding="{Binding question1}"/>
+                        <DataGridTextColumn Width="*" Header="Option A" Binding="{Binding firstAnswer}"/>
+                        <DataGridTextColumn Width="*" Header="Option B"  Binding="{Binding secondAnswer}"/>
+                        <DataGridTextColumn Width="*" Header="Option C" IsReadOnly="True" Binding="{Binding thirdAnswer}"/>
+                        <DataGridTextColumn Width="*" Header="Option D" IsReadOnly="True" Binding="{Binding fourthAnswer}"/>
+                        <DataGridTextColumn Width="*" Header="Correct Answer" IsReadOnly="True" Binding="{Binding correctAnswer}"/>
+                        <DataGridTemplateColumn Header="Picture"  Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Width="100" Height="30">
+                                        <Image  Source="{Binding picture , Converter= {StaticResource ArrayToBitmap}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Save" Width="150" Padding="12" Margin="10" Cursor="Hand" Command="{Binding SaveCommand}"/>
+                    <Button Content="Edit" Width="150" Margin="10" Padding="12" Cursor="Hand" Command="{Binding EditCommand}"/>
+                    <Button Content="Delete" Width="150" Margin="10" Padding="12" Cursor="Hand" Command="{Binding DeleteCommand}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CSharpQuizViewModel}" x:Key="CSharpQuizViewModel">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                    <TextBlock Margin="10">
+                        <Run FontSize="18" FontWeight="DemiBold" Text="Subject : "/>
+                        <Run Text="C#"/>
+                    </TextBlock>
+                    <TextBlock Margin="10">
+                        <Run FontSize="18" FontWeight="DemiBold" Text="Score : "/>
+                        <Run Text="{Binding Score , UpdateSourceTrigger=PropertyChanged}"/>
+                    </TextBlock>
+                    <TextBlock FontSize="18" FontWeight="DemiBold" Margin="10">
+                        <Run>Time : </Run>
+                        <Run Text="{Binding SecondTimer, UpdateSourceTrigger=PropertyChanged}"/>
+                    </TextBlock>
+                </StackPanel>
+                <Image Grid.Column="0" Visibility="{Binding VisibleQuestion}" Width="650" HorizontalAlignment="Center" MaxHeight="180" Grid.Row="1" Grid.ColumnSpan="2" Source="{Binding Image, Converter={StaticResource ArrayToBitmap}}"/>
+                <TextBlock Grid.Row="2" Visibility="{Binding VisibleQuestion}" Grid.Column="0" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="40" Text="{Binding Question1}"/>
+                <StackPanel Grid.Row="3" Visibility="{Binding VisibleQuestion}" Grid.Column="0" HorizontalAlignment="Center">
+                    <RadioButton 
+                                 Margin="0 15"
+                                 GroupName="csharp" 
+                                 Padding="3 0 20 0"
+                                 Command="{Binding CheckedAnswerCommand}"
+                                 CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"
+                                 IsChecked="{Binding IsCheckRadioBtn}">
+                        <RadioButton.Content>
+                            <TextBlock Text="{Binding FirstAnswer}" TextWrapping="Wrap"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton 
+                        Margin="0 15" 
+                        GroupName="csharp" 
+                        Padding="3 0 20 0"
+                        Command="{Binding CheckedAnswerCommand}"
+                        CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"
+                        IsChecked="{Binding IsSecondBtnChecked}">
+                        <RadioButton.Content>
+                            <TextBlock Text="{Binding SecondAnswer}" TextWrapping="Wrap"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Visibility="{Binding VisibleQuestion}" Grid.Column="1" HorizontalAlignment="Center">
+                    <RadioButton 
+                        Margin="0 15"
+                        GroupName="csharp"
+                        Padding="3 0 20 0"
+                        Command="{Binding CheckedAnswerCommand}"
+                        CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"
+                        IsChecked="{Binding IsThirdBtnChecked }" >
+                        <RadioButton.Content>
+                            <TextBlock Text="{Binding ThirdAnswer}" TextWrapping="Wrap"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton 
+                        Margin="0 15" 
+                        GroupName="csharp" 
+                        Padding="3 0 20 0"
+                        Command="{Binding CheckedAnswerCommand}"
+                        CommandParameter="{Binding Content, RelativeSource={RelativeSource Mode=Self}}"
+                        IsChecked="{Binding IsFourthBtnChecked}">
+                        <RadioButton.Content>
+                            <TextBlock Text="{Binding FourthAnswer}" TextWrapping="Wrap"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                </StackPanel>
+                <StackPanel Grid.Row="4" Visibility="{Binding VisibleQuestion}" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Button Background="White" BorderBrush="White" Margin="20" Visibility="{Binding IsBtnVisible}" Foreground="Red" Command="{Binding NextCommand}">Next</Button>
+                    <Button Background="Gainsboro" BorderBrush="White" Visibility="{Binding IsBtnHidden}" Padding="15" Foreground="Green" Command="{Binding SubmitCommand}">Submit</Button>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Visibility="{Binding HiddenQuestion}" Grid.ColumnSpan="2">
+                    <TextBlock>
+                        <Run FontSize="23" FontWeight="Bold">
+                            Congratulation 
+                        </Run>
+                        <Run FontSize="23" FontWeight="Bold" Text="{Binding CurrentUsername , UpdateSourceTrigger=PropertyChanged}"/>
+                        <LineBreak/>
+                        <Run FontSize="12">Your final result</Run>
+                    </TextBlock>
+                    <TextBlock Margin="0 12 0 0">
+                        <Run FontSize="17" FontWeight="SemiBold">Score : </Run>
+                        <Run Text="{Binding Score}"/>
+                        <Run Text="/10"/>
+                    </TextBlock>
+                    <TextBlock FontSize="17" FontWeight="SemiBold" Margin="0 12 0 0">
+                        <Run FontSize="17" FontWeight="SemiBold">
+                            Subject : 
+                        </Run>
+                        <Run>
+                            C#
+                        </Run>
+                    </TextBlock>
+                    <TextBlock Margin="0 12 0 0">
+                        <Run FontSize="17" FontWeight="SemiBold">Time : </Run>
+                        <Run/>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <ScrollViewer>
+        <Grid  Height="870">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Margin="10">
+            <Menu>
+                    <MenuItem Header="{Binding Username.username}">
+                    <MenuItem Header="Disconnect" Command=""/>
+                    <MenuItem Header="Change View" Command="{Binding ChangeViewModal}"/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1">
+            <Menu>
+                <MenuItem Header="Home" />
+                <MenuItem Header="Course Catalog"/>
+                <MenuItem Header="Community" />
+                <MenuItem Header="Ressources" />
+                <MenuItem Header="Pass test Quiz">
+                    <MenuItem Header="C#" Command="{Binding CSharpViewModelCommand}"/>
+                    <MenuItem Header="Javascript" />
+                    <MenuItem Header="C++" />
+                    <MenuItem Header="Java" />
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+        <ContentPresenter Grid.Row="2" Content="{Binding ViewModel}" ContentTemplateSelector="{StaticResource selector}"/>
+    </Grid>
+    </ScrollViewer>
+</Window>

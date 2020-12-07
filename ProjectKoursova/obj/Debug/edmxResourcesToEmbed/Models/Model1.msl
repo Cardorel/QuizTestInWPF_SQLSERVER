@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KoursovaModelStoreContainer" CdmEntityContainer="KoursovaEntities2">
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="KoursovaModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="member1" ColumnName="member" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="KoursovaModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="questionId" ColumnName="questionId" />
+          <ScalarProperty Name="subjectId" ColumnName="subjectId" />
+          <ScalarProperty Name="question1" ColumnName="question" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="firstAnswer" ColumnName="firstAnswer" />
+          <ScalarProperty Name="secondAnswer" ColumnName="secondAnswer" />
+          <ScalarProperty Name="thirdAnswer" ColumnName="thirdAnswer" />
+          <ScalarProperty Name="fourthAnswer" ColumnName="fourthAnswer" />
+          <ScalarProperty Name="correctAnswer" ColumnName="correctAnswer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registrations">
+      <EntityTypeMapping TypeName="KoursovaModel.Registration">
+        <MappingFragment StoreEntitySet="Registration">
+          <ScalarProperty Name="registrationId" ColumnName="registrationId" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="passwordReg" ColumnName="passwordReg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="KoursovaModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="subjectId" ColumnName="subjectId" />
+          <ScalarProperty Name="subject1" ColumnName="subject" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAnswers">
+      <EntityTypeMapping TypeName="KoursovaModel.UserAnswer">
+        <MappingFragment StoreEntitySet="UserAnswers">
+          <ScalarProperty Name="userAnswerId" ColumnName="userAnswerId" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="answer1" ColumnName="answer1" />
+          <ScalarProperty Name="answer2" ColumnName="answer2" />
+          <ScalarProperty Name="answer3" ColumnName="answer3" />
+          <ScalarProperty Name="answer4" ColumnName="answer4" />
+          <ScalarProperty Name="answer5" ColumnName="answer5" />
+          <ScalarProperty Name="answer6" ColumnName="answer6" />
+          <ScalarProperty Name="answer7" ColumnName="answer7" />
+          <ScalarProperty Name="answer8" ColumnName="answer8" />
+          <ScalarProperty Name="answer9" ColumnName="answer9" />
+          <ScalarProperty Name="answer10" ColumnName="answer10" />
+          <ScalarProperty Name="totalScore" ColumnName="totalScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UserAdd" FunctionName="KoursovaModel.Store.UserAdd" />
+  </EntityContainerMapping>
+</Mapping>

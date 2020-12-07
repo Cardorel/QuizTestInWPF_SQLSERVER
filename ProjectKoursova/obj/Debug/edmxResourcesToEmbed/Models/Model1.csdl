@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KoursovaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="memberId" />
+    </Key>
+    <Property Name="memberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="member1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__membe__2A4B4B5E" FromRole="Member" ToRole="Registration" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="questionId" />
+    </Key>
+    <Property Name="questionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subjectId" Type="Int32" />
+    <Property Name="question1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="firstAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="secondAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="thirdAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fourthAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="correctAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK__Questions__subje__38996AB5" FromRole="Questions" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="registrationId" />
+    </Key>
+    <Property Name="registrationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="memberId" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="passwordReg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Member" Relationship="Self.FK__Registrat__membe__2A4B4B5E" FromRole="Registration" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="subjectId" />
+    </Key>
+    <Property Name="subjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subject1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Questions" Relationship="Self.FK__Questions__subje__38996AB5" FromRole="Subject" ToRole="Questions" />
+  </EntityType>
+  <EntityType Name="UserAnswer">
+    <Key>
+      <PropertyRef Name="userAnswerId" />
+    </Key>
+    <Property Name="userAnswerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer10" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="totalScore" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Registrat__membe__2A4B4B5E">
+    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="memberId" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Questions__subje__38996AB5">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="subjectId" />
+      </Principal>
+      <Dependent Role="Questions">
+        <PropertyRef Name="subjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KoursovaEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Members" EntityType="Self.Member" />
+    <EntitySet Name="Questions" EntityType="Self.Question" />
+    <EntitySet Name="Registrations" EntityType="Self.Registration" />
+    <EntitySet Name="Subjects" EntityType="Self.Subject" />
+    <EntitySet Name="UserAnswers" EntityType="Self.UserAnswer" />
+    <AssociationSet Name="FK__Registrat__membe__2A4B4B5E" Association="Self.FK__Registrat__membe__2A4B4B5E">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Registration" EntitySet="Registrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Questions__subje__38996AB5" Association="Self.FK__Questions__subje__38996AB5">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Questions" EntitySet="Questions" />
+    </AssociationSet>
+    <FunctionImport Name="UserAdd">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="memberId" Mode="In" Type="Int32" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="passwordReg" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>
